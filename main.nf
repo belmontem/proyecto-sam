@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-
+# -*- coding: utf-8 -*-
 /*
 ========================================================================================
     SAM Analysis Pipeline
@@ -10,22 +10,21 @@
 nextflow.enable.dsl=2
 
 // 1. Parameters
-params.input_files = "${projectDir}/*.sam"
-params.help = false
+params.input_files = "*.sam"
 
-// Help message logic
+params.help = false
 if (params.help) {
     log.info """
     Usage:
       nextflow run main.nf --input_files '/path/to/files/*.sam'
 
     Options:
-      --input_files  Path to SAM files (use quotes if using wildcards).
-    """.stripIndent()
+      --input_files  Path to SAM files.
+    """
     exit 0
 }
 
-// 2. Process definition (Modular logic)
+// 2. Process
 process ANALYZE_SAM {
     tag "Processing: ${sam_file.name}"
     
@@ -36,17 +35,12 @@ process ANALYZE_SAM {
     stdout
 
     script:
-    """
-    uv run python main.py ${sam_file}
-    """
+    "uv run python main.py ${sam_file}"
 }
 
-// 3. Workflow execution (Orchestration)
+// 3. Workflow execution
 workflow {
-    // Create channel from input path
-    // Best practice: handle multiple files with fromPath
-    sam_ch = Channel.fromPath(params.input_files, checkIfExists: true)
+    sam_ch = Channel.fromPath(params.input_files)
 
-    // Connection: Input channel -> Process -> View output
-    ANALYZE_SAM(sam_ch) | view { it.trim() }
+    ANALYZE_SAM(sam_ch) | view
 }
