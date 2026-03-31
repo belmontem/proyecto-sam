@@ -9,7 +9,7 @@ The program processes SAM files to calculate critical alignment statistics:
 - Identification of reads with maximum mapping quality (MAPQ = 60).
 - Calculation of the percentage of high-quality reads out of the total.
 
-##🛠ystem Requirements
+## System Requirements
 
 To run this pipeline, you need to have the following installed:
 - Java 11 or higher (required for Nextflow).
@@ -34,11 +34,11 @@ By default, the pipeline will search for any `.sam`files in the current director
    ```bash nextflow run main.nf```
 
 3. Custom input files:
-You can specify a diferent file or directory ussing the --input_files parameter
+You can specify a different file or directory using the --sam parameter
     ```bash
-    nextflow run main.nf --input_files 'path/to/your/files/*.sam'```
+    nextflow run main.nf --sam 'path/to/your/files/*.sam'```
 
 4. Help menu
-To display the bult-in help message with the available options without running the analysis, run the --hept flag:
+To display the built-in help message with the available options without running the analysis, run the --hept flag:
     ```bash
-    nextflow run main.nf --hepl ```
+    nextflow run main.nf --help ```
