@@ -31,14 +31,15 @@ By default, the pipeline will search for any `.sam`files in the current director
 
 2. Pipeline execution:
    Run the following command in your terminal:
-   ```bash nextflow run main.nf```
+   ```bash
+   nextflow run main.nf
 
 3. Custom input files:
 You can specify a different file or directory using the --sam parameter
     ```bash
-    nextflow run main.nf --sam 'path/to/your/files/*.sam'```
+    nextflow run main.nf --sam 'path/to/your/files/*.sam'
 
 4. Help menu
 To display the built-in help message with the available options without running the analysis, run the --hept flag:
     ```bash
-    nextflow run main.nf --help ```
+    nextflow run main.nf --help 
