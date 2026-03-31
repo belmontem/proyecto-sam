@@ -10,16 +10,19 @@
 nextflow.enable.dsl=2
 
 // 1. Parameters
-params.sam = "*.sam"
-
+params.sam = "$projectDir/*.sam"
 params.help = false
+
 if (params.help) {
     log.info """
+    SAM Quality Analysus Pipeline
+    -----------------------------
     Usage:
       nextflow run main.nf --sam '/path/to/files/*.sam'
 
     Options:
-      --input_files  Path to SAM files.
+      --sam  Path to SAM files.
+      --help show this message.
     """
     exit 0
 }
@@ -40,7 +43,7 @@ process ANALYZE_SAM {
 
 // 3. Workflow execution
 workflow {
-    sam_ch = Channel.fromPath(params.input_files)
+    sam_ch = Channel.fromPath(params.sam)
 
     ANALYZE_SAM(sam_ch) | view
 }
