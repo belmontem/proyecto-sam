@@ -10,13 +10,13 @@
 nextflow.enable.dsl=2
 
 // 1. Parameters
-params.input_files = "*.sam"
+params.sam = "*.sam"
 
 params.help = false
 if (params.help) {
     log.info """
     Usage:
-      nextflow run main.nf --input_files '/path/to/files/*.sam'
+      nextflow run main.nf --sam '/path/to/files/*.sam'
 
     Options:
       --input_files  Path to SAM files.
