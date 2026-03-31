@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-# -*- coding: utf-8 -*-
+
 /*
 ========================================================================================
     SAM Analysis Pipeline
@@ -35,7 +35,7 @@ process ANALYZE_SAM {
     stdout
 
     script:
-    "uv run python main.py ${sam_file}"
+    "FORCE_COLOR=1 uv run python ${projectDir}/main.py ${sam_file}"
 }
 
 // 3. Workflow execution
